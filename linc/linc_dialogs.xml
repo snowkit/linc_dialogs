@@ -1,0 +1,5 @@
+<xml>
+
+    <set name='LINC_DIALOGS_PATH' value='${haxelib:linc_dialogs}'/>
+
+</xml>

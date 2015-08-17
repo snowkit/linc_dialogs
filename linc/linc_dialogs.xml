@@ -2,4 +2,52 @@
 
     <set name='LINC_DIALOGS_PATH' value='${haxelib:linc_dialogs}'/>
 
+    <set name="USE_GTK3" value="1"/>
+
+    <set name="GTK_PATH" value="/usr/lib/x86_64-linux-gnu/gtk-2.0" if="HXCPP_M64"/>
+    <set name="GTK_GLIB_PATH" value="/usr/lib/x86_64-linux-gnu/glib-2.0" if="HXCPP_M64"/>
+    <set name="GTK_PATH" value="/usr/lib/i386-linux-gnu/gtk-2.0" unless="HXCPP_M64"/>
+    <set name="GTK_GLIB_PATH" value="/usr/lib/i386-linux-gnu/glib-2.0" unless="HXCPP_M64"/>
+
+<!-- <error value="err - ${GTK_GLIB_PATH}" /> -->
+
+    <files id="linc_dialogs">
+      <compilerflag value="-I${LINC_DIALOGS_PATH}/linc"/>
+
+      <section if="linux">
+
+        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_linux.cpp" if="linux" />
+
+        <!-- gtk 3 only -->
+        <compilerflag value="-I/usr/include/gtk-3.0" if="USE_GTK3"/>
+        <compilerflag value="-I${GTK_GLIB_PATH}/include" if="USE_GTK3"/>
+
+        <!-- gtk 2 and 3 -->
+        <compilerflag value="-I/usr/include/libpng12"/>
+        <compilerflag value="-I/usr/include/atk-1.0"/>
+        <compilerflag value="-I/usr/include/cairo"/>
+        <compilerflag value="-I/usr/include/gdk-pixbuf-2.0"/>
+        <compilerflag value="-I/usr/include/pango-1.0"/>
+        <compilerflag value="-I/usr/include/gio-unix-2.0/"/>
+        <compilerflag value="-I/usr/include/freetype2"/>
+        <compilerflag value="-I/usr/include/glib-2.0"/>
+        <compilerflag value="-I/usr/include/pixman-1"/>
+
+        <!-- gtk 2 only -->
+        <compilerflag value="-I/usr/include/gtk-2.0" if="USE_GTK2"/> 
+        <compilerflag value="-I${GTK_PATH}/include" if="USE_GTK2"/> 
+        <compilerflag value="-I${GTK_GLIB_PATH}/include" if="USE_GTK2"/> 
+        <compilerflag value="-I/usr/include/harfbuzz" if="USE_GTK2"/>
+
+      </section>
+
+    </files>
+
+    <files id="haxe">
+      <compilerflag value="-I${LINC_DIALOGS_PATH}/linc"/>
+    </files>
+
+   <target id="haxe">
+      <files id="linc_dialogs" />
+   </target>
 </xml>

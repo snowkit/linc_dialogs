@@ -8,6 +8,7 @@ namespace linc {
 
     namespace dialogs {
 
+      extern ::String open(::String title, ::Array<Dynamic> filters);
 
     } //dialogs namespace
 

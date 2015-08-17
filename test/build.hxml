@@ -8,9 +8,9 @@
 
 # pick a target
 
--D mac
+#-D mac
 #-D windows
-#-D linux
+-D linux
 #-D ios
 #-D android
 

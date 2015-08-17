@@ -26,3 +26,6 @@ typedef FileFilter = {
     @:optional var desc:String;
 
 } //FileFilter
+
+@:buildXml("<include name='${haxelib:linc_dialogs}/linc/linc_dialogs.xml'/>")
+@:keep private class DialogsLinc {}

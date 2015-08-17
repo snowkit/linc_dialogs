@@ -34,9 +34,9 @@
         <compilerflag value="-I/usr/include/pixman-1"/>
 
         <!-- gtk 2 only -->
-        <compilerflag value="-I/usr/include/gtk-2.0" if="USE_GTK2"/> 
-        <compilerflag value="-I${GTK_PATH}/include" if="USE_GTK2"/> 
-        <compilerflag value="-I${GTK_GLIB_PATH}/include" if="USE_GTK2"/> 
+        <compilerflag value="-I/usr/include/gtk-2.0" if="USE_GTK2"/>
+        <compilerflag value="-I${GTK_PATH}/include" if="USE_GTK2"/>
+        <compilerflag value="-I${GTK_GLIB_PATH}/include" if="USE_GTK2"/>
         <compilerflag value="-I/usr/include/harfbuzz" if="USE_GTK2"/>
 
       </section>
@@ -49,5 +49,30 @@
 
    <target id="haxe">
       <files id="linc_dialogs" />
+
+      <section if="linux">
+        <!-- These are from `pkg-config --libs gtk+-3.0` -->
+        <lib name="-lgtk-3" if="USE_GTK3"/>
+        <lib name="-lgdk-3" if="USE_GTK3"/>
+        <lib name="-lcairo-gobject" if="USE_GTK3"/>
+
+        <!-- from both gtk3 and gtk2 -->
+        <lib name="-latk-1.0"/>
+        <lib name="-lgio-2.0"/>
+        <lib name="-lpangocairo-1.0"/>
+        <lib name="-lgdk_pixbuf-2.0"/>
+        <lib name="-lpango-1.0"/>
+        <lib name="-lcairo"/>
+        <lib name="-lgobject-2.0"/>
+        <lib name="-lglib-2.0"/>
+
+        <!-- These are from `pkg-config --libs gtk+-2.0` -->
+        <lib name="-lgtk-x11-2.0" if="USE_GTK2"/>
+        <lib name="-lgdk-x11-2.0" if="USE_GTK2"/>
+        <lib name="-lpangoft2-1.0" if="USE_GTK2"/>
+        <lib name="-lfontconfig" if="USE_GTK2"/>
+        <lib name="-lfreetype" if="USE_GTK2"/>
+      </section>
+
    </target>
 </xml>

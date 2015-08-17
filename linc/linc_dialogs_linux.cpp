@@ -13,9 +13,7 @@ namespace linc {
       ::String open(::String title, ::Array<Dynamic> filters)
       {
 
-printf("Called with title: %s\n", title.__CStr());
-
-GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+        GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
         if(!gtk_inited) {
             gtk_init(NULL, NULL);
@@ -35,24 +33,26 @@ GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
             NULL 
         );
 
-        if(action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER && filters.size() > 0) {
+        if(action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER && filters->size() > 0) {
 
-                //loop through the given filters adding them
-            std::vector<file_filter>::const_iterator it = filters.begin();
-
-                for( ; it != filters.end(); ++it ) {
-
-                    GtkFileFilter *a_filter = gtk_file_filter_new();
-
-                        ::String _pattern("*." + (*it).extension);
-                        ::String _desc((*it).desc + " (" + _pattern + ")");
-                        gtk_file_filter_add_pattern(a_filter, _pattern.c_str());
-                        gtk_file_filter_set_name(a_filter, _desc.c_str());
-
-                        //add to the dialog
-                    gtk_file_chooser_add_filter( GTK_FILE_CHOOSER( dialog ), a_filter );
-
-                } //each filter
+          // loop through the given filters adding them
+            int size = filters->size();
+            for(int i=0; i<size; ++i) {
+             
+              GtkFileFilter *a_filter = gtk_file_filter_new();
+             
+              Dynamic item = filters[i];
+              ::String ext = item->__Field(HX_CSTRING("extension"), hx::paccDynamic);
+              ::String _pattern(HX_CSTRING("*.") + ext);
+              ::String _desc = item->__Field(HX_CSTRING("desc"), hx::paccDynamic) +
+                  HX_CSTRING(" (") + _pattern + HX_CSTRING(")");
+              gtk_file_filter_add_pattern(a_filter, _pattern.c_str());
+              gtk_file_filter_set_name(a_filter, _desc.c_str());
+             
+              //add to the dialog
+              gtk_file_chooser_add_filter( GTK_FILE_CHOOSER( dialog ), a_filter );
+             
+            } //each filter
 
         } //not folder select && has filters
 
@@ -73,19 +73,19 @@ GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
       } //open_gtk_dialog
 
-        ::String dialog_open(const ::String &title, const std::vector<file_filter> &filters) {
-                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title, filters);
-        } //dialog_open
-
-        ::String dialog_save(const ::String &title, const std::vector<file_filter> &filters) {
-                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title, filters);
-        } //dialog_save
-
-        ::String dialog_folder(const ::String &title) {
-
-                std::vector<file_filter> filters;
-                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title, filters);
-        } //dialog_folder
+//        ::String dialog_open(const ::String &title, const std::vector<file_filter> &filters) {
+//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title, filters);
+//        } //dialog_open
+// 
+//        ::String dialog_save(const ::String &title, const std::vector<file_filter> &filters) {
+//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title, filters);
+//        } //dialog_save
+// 
+//        ::String dialog_folder(const ::String &title) {
+// 
+//                std::vector<file_filter> filters;
+//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title, filters);
+//        } //dialog_folder
 
     } //dialogs namespace
 

@@ -6,7 +6,7 @@ class Test {
 
     static function main() {
 
-      var result = Dialogs.open('Load trace history', [{ extension:'.hxscout', desc:'hxscout dump' }]);
+      var result = Dialogs.open('Load trace history', [{ extension:'hxt', desc:'HXTelemetry Dump' }, { extension:'flm', desc:'Flash Telemetry Dump' }]);
       trace("Got result: "+result);
 
     } //main

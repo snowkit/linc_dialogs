@@ -19,9 +19,11 @@ namespace linc {
       ::String open(::String title, ::Array<Dynamic> filters) {
 
         std::vector<lincDialogsFilter> filter_list;
-        int size = filters->size();
-        for(int i=0; i<size; ++i) {
-          filter_list.push_back(lincDialogsFilter(filters[i]));
+        if (filters!=null()) {
+          int size = filters->size();
+          for(int i=0; i<size; ++i) {
+            filter_list.push_back(lincDialogsFilter(filters[i]));
+          }
         }
         std::string result = open_select_path(0, std::string(title.c_str()), filter_list);
 
@@ -31,7 +33,7 @@ namespace linc {
 
       ::String save(::String title, Dynamic filter) {
         std::vector<lincDialogsFilter> filter_list;
-        filter_list.push_back(lincDialogsFilter(filter));
+        if (filter!=null()) filter_list.push_back(lincDialogsFilter(filter));
         std::string result = open_select_path(1, std::string(title.c_str()), filter_list);
 
         return ::String(result.c_str());

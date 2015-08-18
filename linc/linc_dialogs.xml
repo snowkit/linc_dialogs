@@ -14,9 +14,13 @@
     <files id="linc_dialogs">
       <compilerflag value="-I${LINC_DIALOGS_PATH}/linc"/>
 
+      <section if="mac">
+        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_mac.cpp" />
+      </section>
+
       <section if="linux">
 
-        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_linux.cpp" if="linux" />
+        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_linux.cpp"/>
 
         <!-- gtk 3 only -->
         <compilerflag value="-I/usr/include/gtk-3.0" if="USE_GTK3"/>

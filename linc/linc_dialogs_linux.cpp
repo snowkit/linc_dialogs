@@ -40,14 +40,10 @@ namespace linc {
             for(int i=0; i<size; ++i) {
              
               GtkFileFilter *a_filter = gtk_file_filter_new();
-             
-              Dynamic item = filters[i];
-              ::String ext = item->__Field(HX_CSTRING("extension"), hx::paccDynamic);
-              ::String _pattern(HX_CSTRING("*.") + ext);
-              ::String _desc = item->__Field(HX_CSTRING("desc"), hx::paccDynamic) +
-                  HX_CSTRING(" (") + _pattern + HX_CSTRING(")");
-              gtk_file_filter_add_pattern(a_filter, _pattern.c_str());
-              gtk_file_filter_set_name(a_filter, _desc.c_str());
+              lincDialogsFilter filter(filters[i]);
+
+              gtk_file_filter_add_pattern(a_filter, filter.pattern.c_str());
+              gtk_file_filter_set_name(a_filter, filter.display.c_str());
              
               //add to the dialog
               gtk_file_chooser_add_filter( GTK_FILE_CHOOSER( dialog ), a_filter );

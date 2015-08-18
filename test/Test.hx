@@ -10,8 +10,23 @@ class Test {
 
     static function main() {
 
-      var result = Dialogs.open('Load trace history', [{ extension:'hxt', desc:'HXTelemetry Dump' }, { extension:'flm', desc:'Flash Telemetry Dump' }]);
-      trace("Got result: "+result);
+      var result =
+        Dialogs.open('Load trace history',
+            [
+                { ext:'hxt', desc:'HXTelemetry Dump' },
+                { ext:'flm', desc:'Flash Telemetry Dump' },
+                { ext:'gif', desc:'Testing files I have' }
+            ]);
+
+      trace("Open result: "+result);
+
+      result = Dialogs.save('Save trace history', { ext:'hxt', desc:'HXTelemetry Dump' });
+
+      trace("Save result: "+result);
+
+      result = Dialogs.folder('Select a random folder');
+
+      trace("Folder result: "+result);
 
     } //main
 

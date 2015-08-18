@@ -4,6 +4,7 @@ package dialogs;
 @:keep
 @:include('linc_dialogs.h')
 @:build(linc.Touch.apply())
+@:buildXml("<include name='${haxelib:linc_dialogs}/linc/linc_dialogs.xml'/>")
 extern class Dialogs {
 
     @:native('linc::dialogs::open')
@@ -21,11 +22,8 @@ extern class Dialogs {
 typedef FileFilter = {
 
         /** An extension for the filter. i.e `md`, `txt`, `png` or a special `*` for any file type.  */
-    var extension:String;
+    var ext:String;
         /** An optional description for this filter i.e `markdown files`, `text files`, `all files` */
     @:optional var desc:String;
 
 } //FileFilter
-
-@:buildXml("<include name='${haxelib:linc_dialogs}/linc/linc_dialogs.xml'/>")
-@:keep private class DialogsLinc {}

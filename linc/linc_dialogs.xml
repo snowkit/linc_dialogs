@@ -12,10 +12,11 @@
 <!-- <error value="err - ${GTK_GLIB_PATH}" /> -->
 
     <files id="linc_dialogs">
+
       <compilerflag value="-I${LINC_DIALOGS_PATH}/linc"/>
 
       <section if="mac">
-        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_mac.cpp" />
+        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_mac.mm" />
       </section>
 
       <section if="linux">
@@ -52,7 +53,13 @@
     </files>
 
    <target id="haxe">
+
       <files id="linc_dialogs" />
+
+      <section if="mac">
+        <vflag name="-framework" value="Cocoa" />
+        <vflag name="-framework" value="Foundation" />
+      </section>
 
       <section if="linux">
         <!-- These are from `pkg-config --libs gtk+-3.0` -->

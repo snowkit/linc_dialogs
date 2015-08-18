@@ -9,7 +9,8 @@ namespace linc {
     namespace dialogs {
 
         extern ::String open(::String title, ::Array<Dynamic> filters);
-
+        extern ::String save(::String title, Dynamic filter);
+        extern ::String folder(::String title);
 
         //helpers
 
@@ -21,7 +22,7 @@ namespace linc {
 
                     //construct from typedef, doesn't check for null
                 lincDialogsFilter(Dynamic from) {
-                    ext = from->__Field(HX_CSTRING("extension"), hx::paccDynamic);
+                    ext = from->__Field(HX_CSTRING("ext"), hx::paccDynamic);
                     desc = from->__Field(HX_CSTRING("desc"), hx::paccDynamic);
                     pattern = ::String(HX_CSTRING("*.") + ext);
                     display = ::String(desc + HX_CSTRING(" (") + pattern + HX_CSTRING(")"));

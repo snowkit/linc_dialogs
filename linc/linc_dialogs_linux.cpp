@@ -69,6 +69,14 @@ namespace linc {
 
       } //open_gtk_dialog
 
+      ::String save(::String title, Dynamic filter) {
+        return ::String("todo");
+      }
+      ::String folder(::String title) {
+        return ::String("todo");
+      }
+
+
 //        ::String dialog_open(const ::String &title, const std::vector<file_filter> &filters) {
 //                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title, filters);
 //        } //dialog_open

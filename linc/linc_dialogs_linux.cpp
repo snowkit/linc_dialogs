@@ -10,10 +10,8 @@ namespace linc {
 
       static bool gtk_inited = false;
 
-      ::String open(::String title, ::Array<Dynamic> filters)
+      ::String open_gtk_dialog(GtkFileChooserAction action, ::String title, ::Array<Dynamic> filters)
       {
-
-        GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
         if(!gtk_inited) {
             gtk_init(NULL, NULL);
@@ -69,27 +67,23 @@ namespace linc {
 
       } //open_gtk_dialog
 
-      ::String save(::String title, Dynamic filter) {
-        return ::String("todo");
+      ::String open(::String title, ::Array<Dynamic> filters)
+      {
+        return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title, filters);
+      }
+
+      ::String save(::String title, Dynamic filter)
+      {
+				cpp::ArrayBase filters = Dynamic( Array_obj<Dynamic>::__new() );
+				if (filter != null()) {
+          filters->__Field(HX_CSTRING("push"), hx::paccDynamic )(filter);
+        }
+
+        return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title, filters);
       }
       ::String folder(::String title) {
-        return ::String("todo");
+        return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title, 0);
       }
-
-
-//        ::String dialog_open(const ::String &title, const std::vector<file_filter> &filters) {
-//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title, filters);
-//        } //dialog_open
-// 
-//        ::String dialog_save(const ::String &title, const std::vector<file_filter> &filters) {
-//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title, filters);
-//        } //dialog_save
-// 
-//        ::String dialog_folder(const ::String &title) {
-// 
-//                std::vector<file_filter> filters;
-//                return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title, filters);
-//        } //dialog_folder
 
     } //dialogs namespace
 

@@ -19,6 +19,10 @@
         <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_mac.mm" />
       </section>
 
+      <section if="windows">
+        <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_windows.cpp" />
+      </section>
+
       <section if="linux">
 
         <file name="${LINC_DIALOGS_PATH}/linc/linc_dialogs_linux.cpp"/>
@@ -60,6 +64,11 @@
         <vflag name="-framework" value="Cocoa" />
         <vflag name="-framework" value="Foundation" />
       </section>
+
+      <section if="windows">
+        <lib name="comdlg32.lib" />
+        <lib name="ole32.lib" />
+      </section> <!-- windows -->
 
       <section if="linux">
         <!-- These are from `pkg-config --libs gtk+-3.0` -->

@@ -38,7 +38,9 @@ namespace linc {
       } //save
 
       ::String folder(::String title) {
-        return dialog_folder(std::string(title.c_str())).c_str();
+        std::string result = dialog_folder(std::string(title.c_str()));
+
+        return ::String(result.c_str());
       } //folder
 
       std::string lpw_to_stdstring(const LPWSTR str, UINT page = CP_ACP) {
@@ -142,9 +144,11 @@ namespace linc {
 
             lincDialogsFilter filter = (*it);
 
-            final += filter.desc + " (*." + filter.ext + ")";
+            std::string _desc(filter.desc.c_str());
+            std::string _ext(filter.ext.c_str());
+            final += _desc + " (*." + _ext + ")";
             final.push_back('\0');
-            final += "*." + filter.ext;
+            final += "*." + _ext;
             final.push_back('\0');
 
           } //each filter

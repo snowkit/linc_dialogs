@@ -31,7 +31,7 @@ namespace linc {
             NULL 
         );
 
-        if(action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER && filters->size() > 0) {
+        if(action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER && (filters!=null()) && filters->size() > 0) {
 
           // loop through the given filters adding them
             int size = filters->size();

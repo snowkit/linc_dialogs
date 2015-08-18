@@ -28,6 +28,16 @@ class Test {
 
       trace("Folder result: "+result);
 
+
+      var result =
+        Dialogs.open('Load trace history');
+
+      trace("Open min-args result: "+result);
+
+      result = Dialogs.save('Save trace history');
+
+      trace("Save min-args result: "+result);
+
     } //main
 
 } //Test

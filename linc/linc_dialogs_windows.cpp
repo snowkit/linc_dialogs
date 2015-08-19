@@ -1,5 +1,6 @@
 
 #include <string>
+#include <vector>
 
 #include <windows.h>
 #include <shlobj.h>

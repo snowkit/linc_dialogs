@@ -1,7 +1,5 @@
 <xml>
 
-    <set name='LINC_DIALOGS_PATH' value='${haxelib:linc_dialogs}'/>
-
     <set name="USE_GTK3" value="1"/>
 
     <set name="GTK_PATH" value="/usr/lib/x86_64-linux-gnu/gtk-2.0" if="HXCPP_M64"/>

@@ -3,8 +3,8 @@ package dialogs;
 
 @:keep
 @:include('linc_dialogs.h')
-@:build(linc.Touch.apply())
-@:buildXml("<include name='${haxelib:linc_dialogs}/linc/linc_dialogs.xml'/>")
+@:build(linc.Linc.touch())
+@:build(linc.Linc.xml('dialogs'))
 extern class Dialogs {
 
     @:native('linc::dialogs::open')

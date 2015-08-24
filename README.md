@@ -10,6 +10,17 @@ This library works with the Haxe cpp target only.
 
 ---
 
+### Install
+
+`haxelib git linc_dialogs https://github.com/snowkit/linc_dialogs.git`
+
+### Supported platforms
+
+- Mac
+- Linux (GTK 3)
+- Windows
+
+
 ### Example usage
 
 notes:

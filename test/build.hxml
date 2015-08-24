@@ -1,8 +1,6 @@
 -main Test.hx
 -cpp cpp/
 -cp ../
--D no-debug
--D no-simplify
 -debug
 -cmd cpp/Test-debug
 

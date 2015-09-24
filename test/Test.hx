@@ -10,6 +10,8 @@ class Test {
 
     static function main() {
 
+      trace('\t\tcwd ' + Sys.getCwd());
+
       var result =
         Dialogs.open('Load trace history',
             [
@@ -19,15 +21,17 @@ class Test {
             ]);
 
       trace("Open result: "+result);
+      trace('\t\tcwd ' + Sys.getCwd());
 
       result = Dialogs.save('Save trace history', { ext:'hxt', desc:'HXTelemetry Dump' });
 
       trace("Save result: "+result);
+      trace('\t\tcwd ' + Sys.getCwd());
 
       result = Dialogs.folder('Select a random folder');
 
       trace("Folder result: "+result);
-
+      trace('\t\tcwd ' + Sys.getCwd());
 
       var result =
         Dialogs.open('Load trace history');
@@ -37,6 +41,8 @@ class Test {
       result = Dialogs.save('Save trace history');
 
       trace("Save min-args result: "+result);
+
+      trace('\t\tcwd ' + Sys.getCwd());
 
     } //main
 

@@ -3,8 +3,10 @@ package dialogs;
 
 @:keep
 @:include('linc_dialogs.h')
+#if !display
 @:build(linc.Linc.touch())
 @:build(linc.Linc.xml('dialogs'))
+#end
 extern class Dialogs {
 
     @:native('linc::dialogs::open')

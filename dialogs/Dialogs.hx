@@ -53,6 +53,14 @@ extern class Dialogs {
         return _result;
 
     } //folder
+    
+    @:native('linc::dialogs::message')
+    private static function _message(message:String, caption:String) : Bool;
+    static inline function message(message:String, caption:String) : Bool {
+        var _result = _message(message, caption);
+        
+        return _result;
+    }
 
 } //Dialogs
 

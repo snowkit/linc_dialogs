@@ -60,7 +60,7 @@ extern class Dialogs {
         var _result = _message(message, caption);
         
         return _result;
-    }
+    } // message
 
 } //Dialogs
 

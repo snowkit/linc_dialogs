@@ -57,7 +57,7 @@ namespace linc {
           result = true;
           
           return result;
-      }
+      } //message
 
       std::string lpw_to_stdstring(const LPWSTR str, UINT page = CP_ACP) {
 
@@ -203,7 +203,7 @@ namespace linc {
       void show_message(const std::string &message, const std::string &caption)
       {
           MessageBox(NULL, message.c_str(), caption.c_str(), NULL);
-      }
+      } //show_message
       
     } //dialogs namespace
 

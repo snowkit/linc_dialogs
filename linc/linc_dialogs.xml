@@ -11,6 +11,7 @@
 
     <files id="linc_dialogs">
 
+      <cache value="0" />
       <compilerflag value="-I${LINC_DIALOGS_PATH}/linc"/>
 
       <section if="mac">

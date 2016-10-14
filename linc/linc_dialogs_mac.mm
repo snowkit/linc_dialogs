@@ -61,6 +61,7 @@ namespace linc {
 
         std::string dialog_save(const std::string &title, const std::vector<lincDialogsFilter> &filters) {
 
+            NSWindow* previous_window = [NSApp keyWindow];
             NSSavePanel *panel = [NSSavePanel savePanel];
 
             [panel setCanCreateDirectories:YES];
@@ -90,19 +91,23 @@ namespace linc {
 
             NSInteger clicked = [panel runModal];
 
+            std::string result;
+
             if (clicked == NSOKButton) {
 
                 NSString *chosen = [[panel URL] path];
 
-                    std::string result = std::string( [chosen UTF8String] );
+                    result = std::string( [chosen UTF8String] );
 
                 [chosen release];
 
-                return result;
-
             } //OK
 
-            return std::string();
+            [panel close];
+            [panel release];
+            [previous_window makeKeyWindow];
+
+            return result;
 
         } //dialog_save
 
@@ -111,7 +116,8 @@ namespace linc {
                 //type 1 = open folder
         std::string open_select_path( int type, const std::string &title, const std::vector<lincDialogsFilter> &filters ) {
 
-            NSOpenPanel * panel = [NSOpenPanel openPanel];
+            NSWindow* previous_window = [NSApp keyWindow];
+            NSOpenPanel* panel = [NSOpenPanel openPanel];
 
             [panel setAllowsMultipleSelection:NO];
             [panel setFloatingPanel:YES];
@@ -148,19 +154,23 @@ namespace linc {
 
             NSInteger clicked = [panel runModal];
 
+            std::string result;
+
             if(clicked == NSOKButton) {
 
                 NSString *chosen = [[panel URL] path];
 
-                    std::string result = std::string( [chosen UTF8String] );
+                result = std::string( [chosen UTF8String] );
 
                 [chosen release];
 
-                return result;
-
             } //OK
 
-            return std::string();
+            [panel close];
+            [panel release];
+            [previous_window makeKeyWindow];
+
+            return result;
 
         } //open_select_path
 

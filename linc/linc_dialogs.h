@@ -1,8 +1,6 @@
-#ifndef _LINC_DIALOGS_H_
-#define _LINC_DIALOGS_H_
+#pragma once
 
 #include <hxcpp.h>
-
 
 namespace linc {
 
@@ -32,6 +30,3 @@ namespace linc {
     } //dialogs namespace
 
 } //linc namespace
-
-
-#endif //_LINC_DIALOGS_H_

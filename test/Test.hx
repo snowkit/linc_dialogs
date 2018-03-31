@@ -10,6 +10,8 @@ class Test {
 
     static function main() {
 
+        var message = Dialogs.message("This is a message.", "Title");
+        
       trace('\t\tcwd ' + Sys.getCwd());
 
       var result =

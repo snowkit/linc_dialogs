@@ -11,6 +11,7 @@ namespace linc {
         extern ::String open(::String title, ::Array<Dynamic> filters);
         extern ::String save(::String title, Dynamic filter);
         extern ::String folder(::String title);
+        extern ::Bool message(::String message, ::String caption);
 
         //helpers
 

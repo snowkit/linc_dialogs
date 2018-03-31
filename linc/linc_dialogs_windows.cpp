@@ -14,6 +14,7 @@ namespace linc {
         //forward declare common helper
       std::string open_select_path(int type, const std::string &title, const std::vector<lincDialogsFilter> &filters);
       std::string dialog_folder(const std::string &title);
+      void show_message(const std::string &message, const std::string &caption);
 
 //Haxe facing calls
 
@@ -45,6 +46,18 @@ namespace linc {
 
         return ::String(result.c_str());
       } //folder
+      
+      ::Bool message(::String message, ::String caption)
+      {
+          ::Bool result = false;
+          const std::string c_message = std::string(message.c_str());
+          const std::string c_caption = std::string(caption.c_str());
+          
+          show_message(c_message, c_caption);
+          result = true;
+          
+          return result;
+      } //message
 
       std::string lpw_to_stdstring(const LPWSTR str, UINT page = CP_ACP) {
 
@@ -186,7 +199,12 @@ namespace linc {
         return std::string();
 
       } //open_select_file
-
+      
+      void show_message(const std::string &message, const std::string &caption)
+      {
+          MessageBox(NULL, message.c_str(), caption.c_str(), NULL);
+      } //show_message
+      
     } //dialogs namespace
 
 } //linc namespace
